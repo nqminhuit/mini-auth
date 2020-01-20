@@ -34,6 +34,8 @@ $ java -jar boot/build/libs/boot-<app_version>.jar
 ## Test with curl:
 ```
 $ curl -X GET http://localhost:8080/customer?name=batman
+$ curl -X POST http://localhost:8080/customer/create -H 'Content-Type:application/json' --data '{"username": "Bruce Wayne", "role": "Billionaire"}'
+$ curl -X GET http://localhost:8080/customers
 ```
 should return a JSON similar to this:
 ```
