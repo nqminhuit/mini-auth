@@ -13,7 +13,7 @@ public class Customer {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "username")
+    @Column(name = "username", unique = true)
     private String username;
 
     @Column(name = "role")
@@ -23,6 +23,12 @@ public class Customer {
     }
 
     public Customer(String username, String role) {
+        this.username = username;
+        this.role = role;
+    }
+
+    public Customer(Long id, String username, String role) {
+        this.id = id;
         this.username = username;
         this.role = role;
     }
@@ -54,6 +60,10 @@ public class Customer {
     @Override
     public String toString() {
         return "CustomerEntity [id=" + id + ", role=" + role + ", username=" + username + "]";
+    }
+
+    public String toJson() {
+        return "{\"role\":\"" + role + "\", \"username\":\"" + username + "\"}";
     }
 
 }

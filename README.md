@@ -31,20 +31,15 @@ $ ./gradlew clean assemble
 ```
 $ java -jar boot/build/libs/boot-<app_version>.jar
 ```
-## Test with curl:
+## Test REST APIs with curl:
+```bash
+$ curl -X POST http://localhost:8080/api/customer/create -H 'Content-Type:application/json' --data '{"username": "batman", "role": "the dark knight"}'
+$ curl -X GET http://localhost:8080/api/customer/details?name=batman
+$ curl -X GET http://localhost:8080/api/customer/all
+$ curl -X PUT http://localhost:8080/api/customer/1 -H 'Content-Type:application/json' --data '{"username": "wayne", "role": "billionaire"}'
+$ curl -X DELETE http://localhost:8080/api/customer/1
 ```
-$ curl -X GET http://localhost:8080/customer?name=batman
-$ curl -X POST http://localhost:8080/customer/create -H 'Content-Type:application/json' --data '{"username": "Bruce Wayne", "role": "Billionaire"}'
-$ curl -X GET http://localhost:8080/customers
-```
-should return a JSON similar to this:
-```
-{
-    "id":0,
-    "username":"batman",
-    "role":"customer"
-}
-```
+
 ## Execute Unit tests:
 ```
 $ ./gradlew test
