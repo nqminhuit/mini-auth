@@ -1,5 +1,4 @@
 # mini-auth
-
 Create a mini application to manage list of users with the following available
 features:
 - login as a user with role Admin
@@ -20,3 +19,32 @@ Non-functional requirements:
 - Upload your code to Github/Gitlab/Bitbucket.
 - (Optional) Prepare script that will build backend/frontend and launch local docker-
 compose configuration with all integrated components(backend/frontend/database)
+
+---
+
+# Project Setup
+## Build:
+```
+$ ./gradlew clean assemble
+```
+## Deploy:
+```
+$ java -jar boot/build/libs/boot-<app_version>.jar
+```
+## Test with curl:
+```
+$ curl -X GET http://localhost:8080/customer?name=batman
+```
+should return a JSON similar to this:
+```
+{
+    "id":0,
+    "username":"batman",
+    "dateOfBirth":"2020-01-20T08:32:19.705+0000",
+    "role":"customer"
+}
+```
+## Execute Unit tests:
+```
+$ ./gradlew test
+```
