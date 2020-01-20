@@ -40,7 +40,6 @@ should return a JSON similar to this:
 {
     "id":0,
     "username":"batman",
-    "dateOfBirth":"2020-01-20T08:32:19.705+0000",
     "role":"customer"
 }
 ```
