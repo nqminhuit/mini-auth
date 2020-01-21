@@ -14,9 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import mini.auth.boot.entities.Customer;
 import mini.auth.boot.entities.business.CustomerRepository;
 
+@Api(description = "Supported operations for Customer entity")
 @RestController
 @RequestMapping("/api/customer")
 public class CustomerController {
@@ -24,11 +27,13 @@ public class CustomerController {
     @Autowired
     private CustomerRepository customerRepository;
 
+    @ApiOperation(value = "Find customer by a given username")
     @GetMapping("/details")
     public Customer findCustomerByUsername(@RequestParam(value = "name") String name) {
         return customerRepository.findByUsername(name).get(0);
     }
 
+    @ApiOperation(value = "List all customers")
     @GetMapping("/all")
     public List<Customer> findAllCustomers() {
         List<Customer> customers = new ArrayList<>();
@@ -36,6 +41,7 @@ public class CustomerController {
         return customers;
     }
 
+    @ApiOperation(value = "Create a new customer")
     @PostMapping(path = "/create",
         consumes = APPLICATION_JSON_VALUE,
         produces = APPLICATION_JSON_VALUE)
@@ -43,6 +49,7 @@ public class CustomerController {
         return customerRepository.save(newCustomer);
     }
 
+    @ApiOperation(value = "Update customer with the given id")
     @PutMapping(path = "/{id}",
         consumes = APPLICATION_JSON_VALUE,
         produces = APPLICATION_JSON_VALUE)
@@ -55,6 +62,7 @@ public class CustomerController {
         return customerRepository.save(existing);
     }
 
+    @ApiOperation(value = "Delete customer by id")
     @DeleteMapping("/{id}")
     public @ResponseBody void deleteCustomer(@PathVariable("id") Long customerId) {
         customerRepository.deleteById(customerId);
