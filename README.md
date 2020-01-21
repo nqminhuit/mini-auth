@@ -44,3 +44,6 @@ $ curl -X DELETE http://localhost:8080/api/customer/1
 ```
 $ ./gradlew test
 ```
+## Swagger:
+UI:  http://localhost:8080/swagger-ui.html
+raw: http://localhost:8080/v2/api-docs
