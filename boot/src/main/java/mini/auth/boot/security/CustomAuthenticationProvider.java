@@ -1,6 +1,6 @@
 package mini.auth.boot.security;
 
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -8,6 +8,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import mini.auth.boot.entities.Customer;
@@ -35,7 +36,9 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
             throw new BadCredentialsException("Password is invalid!");
         }
 
-        return new UsernamePasswordAuthenticationToken(username, password, Collections.emptyList());
+        return new UsernamePasswordAuthenticationToken(
+            username, password, Arrays.asList(
+                new SimpleGrantedAuthority(customers.get(0).getRole())));
     }
 
     @Override

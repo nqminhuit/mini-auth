@@ -31,7 +31,7 @@ public class MiniAuthSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
             .authorizeRequests()
             .antMatchers("/api/customer/details").permitAll()
-            .antMatchers("/api/customer/**").authenticated()// hasRole("ADMIN")
+            .antMatchers("/api/customer/**").hasAuthority("the dark knight")
             .and().httpBasic().realmName(REALM)
             .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
