@@ -32,19 +32,25 @@ public class CustomerControllerCrudTest {
     public void shouldCreateCustomer() {
         // given:
         Customer customer = new Customer("clark", "superman");
-
+        customer.setPassword("password");
         // when:
         controller.createNewCustomer(customer);
 
         // then:
         Customer createdCustomer = repository.findByUsername("clark").get(0);
-        assertCustomer(createdCustomer, "clark", "suuserperman");
+        assertCustomer(createdCustomer, "clark", "superman");
+    }
+
+    private void saveCustomerToDb(String username, String role) {
+        Customer customer = new Customer(username, role);
+        customer.setPassword("password");
+        repository.save(customer);
     }
 
     @Test
     public void shouldGetCorrectCustomer() {
         // given:
-        repository.save(new Customer("batman", "the dark knight"));
+        saveCustomerToDb("batman", "the dark knight");
 
         // when:
         Customer createdCustomer = controller.findCustomerByUsername("batman");
@@ -56,7 +62,7 @@ public class CustomerControllerCrudTest {
     @Test
     public void shouldUpdateCustomer() {
         // given:
-        repository.save(new Customer("catwoman", "the thief"));
+        saveCustomerToDb("catwoman", "the thief");
         Customer existingCustomer = repository.findByUsername("catwoman").get(0);
         assertCustomer(existingCustomer, "catwoman", "the thief");
 
