@@ -11,7 +11,9 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import mini.auth.boot.entities.Customer;
@@ -27,8 +29,24 @@ public class CustomerControllerRestTest {
     @MockBean
     private CustomerRepository repository;
 
+    private static final String ADMIN_USER = "ADMIN_USER";
+
+    private static final String ADMIN_ROLE = "admin";
+
+    private static final String PUBLIC_USER = "PUBLIC_USER";
+
+    private static final String USER_ROLE = "user";
+
+    private void prepareCustomer() {
+        given(repository.findByUsername(ADMIN_USER))
+            .willReturn(Collections.singletonList(new Customer(0L, ADMIN_USER, ADMIN_ROLE)));
+        given(repository.findByUsername(PUBLIC_USER))
+            .willReturn(Collections.singletonList(new Customer(1L, PUBLIC_USER, USER_ROLE)));
+    }
+
     @Test
-    public void createCustomer() throws Exception {
+    @WithMockUser(username = ADMIN_USER, authorities = { ADMIN_ROLE })
+    public void adminCanCreateCustomer() throws Exception {
         Customer newCustomer = new Customer("batman", "the dark knight");
         mvc.perform(post("/api/customer/create")
             .contentType(MediaType.APPLICATION_JSON)
@@ -36,21 +54,35 @@ public class CustomerControllerRestTest {
             .andExpect(status().isOk());
     }
 
-    private void prepareCustomer() {
-        given(repository.findByUsername("batman"))
-            .willReturn(Collections.singletonList(new Customer(0L, "batman", "the dark knight")));
-        given(repository.findByUsername("clark"))
-            .willReturn(Collections.singletonList(new Customer(1L, "clark", "superman")));
+    @Test
+    public void anonymousUserCanNotCreateCustomer() throws Exception {
+        Customer newCustomer = new Customer("batman", "the dark knight");
+        mvc.perform(post("/api/customer/create")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(newCustomer.toJson()))
+            .andExpect(status().is(HttpStatus.UNAUTHORIZED.value()));
     }
 
     @Test
-    public void getCustomer() throws Exception {
+    @WithMockUser(username = PUBLIC_USER, authorities = { USER_ROLE })
+    public void publicUserCanNotCreateCustomer() throws Exception {
+        Customer newCustomer = new Customer("batman", "the dark knight");
+        mvc.perform(post("/api/customer/create")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(newCustomer.toJson()))
+            .andExpect(status().isForbidden());
+    }
+
+    @Test
+    public void anonymousUserCanGetCustomerDetails() throws Exception {
         // given:
         prepareCustomer();
 
         // when:
-        mvc.perform(get("/api/customer/details?name=clark"))
-            .andExpect(content().string("{\"id\":1,\"username\":\"clark\",\"role\":\"superman\"}"));
+        mvc.perform(get("/api/customer/details?name=" + PUBLIC_USER))
+            .andExpect(
+                content().string("{\"id\":1,\"username\":\"" + PUBLIC_USER +
+                    "\",\"role\":\"user\",\"password\":null}"));
     }
 
     // @Test TODO minh: implement!

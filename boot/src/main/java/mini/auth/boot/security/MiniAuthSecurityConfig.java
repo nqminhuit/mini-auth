@@ -18,6 +18,8 @@ public class MiniAuthSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static String REALM = "MINI_AUTH_TEST_REALM";
 
+    private static final String ADMIN_ROLE = "admin";
+
     @Autowired
     private CustomAuthenticationProvider customAuthenticationProvider;
 
@@ -31,7 +33,7 @@ public class MiniAuthSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
             .authorizeRequests()
             .antMatchers("/api/customer/details").permitAll()
-            .antMatchers("/api/customer/**").hasAuthority("the dark knight")
+            .antMatchers("/api/customer/**").hasAuthority(ADMIN_ROLE)
             .and().httpBasic().realmName(REALM)
             .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
