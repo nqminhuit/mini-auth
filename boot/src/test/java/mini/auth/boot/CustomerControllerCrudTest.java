@@ -4,10 +4,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import mini.auth.boot.entities.Customer;
 import mini.auth.boot.entities.business.CustomerRepository;
 
 @SpringBootTest
+@ActiveProfiles("test")
 public class CustomerControllerCrudTest {
 
     @Autowired
@@ -36,7 +38,7 @@ public class CustomerControllerCrudTest {
 
         // then:
         Customer createdCustomer = repository.findByUsername("clark").get(0);
-        assertCustomer(createdCustomer, "clark", "superman");
+        assertCustomer(createdCustomer, "clark", "suuserperman");
     }
 
     @Test
