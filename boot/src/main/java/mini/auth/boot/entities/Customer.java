@@ -19,6 +19,9 @@ public class Customer {
     @Column(name = "role")
     private String role;
 
+    @Column(name = "password")
+    private String password;
+
     protected Customer() {
     }
 
@@ -55,6 +58,14 @@ public class Customer {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
