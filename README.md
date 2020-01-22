@@ -33,11 +33,11 @@ $ java -jar boot/build/libs/boot-<app_version>.jar
 ```
 ## Test REST APIs with curl:
 ```bash
-$ curl -X POST http://localhost:8080/api/customer/create -H 'Content-Type:application/json' --data '{"username": "batman", "role": "the dark knight"}'
+$ curl -X POST --user batman:batman http://localhost:8080/api/customer/create -H 'Content-Type:application/json' --data '{"username": "batman", "role": "the dark knight"}'
 $ curl -X GET http://localhost:8080/api/customer/details?name=batman
-$ curl -X GET http://localhost:8080/api/customer/all
-$ curl -X PUT http://localhost:8080/api/customer/1 -H 'Content-Type:application/json' --data '{"username": "wayne", "role": "billionaire"}'
-$ curl -X DELETE http://localhost:8080/api/customer/1
+$ curl -X GET --user batman:batman http://localhost:8080/api/customer/all
+$ curl -X PUT --user batman:batman http://localhost:8080/api/customer/1 -H 'Content-Type:application/json' --data '{"username": "wayne", "role": "billionaire"}'
+$ curl -X DELETE --user batman:batman http://localhost:8080/api/customer/1
 ```
 
 ## Execute Unit tests:
