@@ -1,4 +1,4 @@
-package mini.auth.boot.entities.business;
+package mini.auth.boot.entities.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import mini.auth.boot.entities.Customer;

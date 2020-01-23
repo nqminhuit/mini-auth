@@ -1,4 +1,4 @@
-package mini.auth.boot;
+package mini.auth.boot.controller;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import mini.auth.boot.entities.Customer;
-import mini.auth.boot.entities.business.CustomerRepository;
+import mini.auth.boot.entities.repository.CustomerRepository;
 
 @Api(description = "Supported operations for Customer entity")
 @RestController

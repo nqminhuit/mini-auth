@@ -1,4 +1,4 @@
-package mini.auth.boot;
+package mini.auth.boot.controller;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import mini.auth.boot.AuthenticationRequest;
 import mini.auth.boot.security.CustomAuthenticationProvider;
 import mini.auth.boot.security.JwtService;
 
