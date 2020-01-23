@@ -5,7 +5,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import java.util.Collections;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,9 +38,9 @@ public class CustomerControllerRestTest {
 
     private void prepareCustomer() {
         given(repository.findByUsername(ADMIN_USER))
-            .willReturn(Collections.singletonList(new Customer(0L, ADMIN_USER, ADMIN_ROLE)));
+            .willReturn(new Customer(0L, ADMIN_USER, ADMIN_ROLE));
         given(repository.findByUsername(PUBLIC_USER))
-            .willReturn(Collections.singletonList(new Customer(1L, PUBLIC_USER, USER_ROLE)));
+            .willReturn(new Customer(1L, PUBLIC_USER, USER_ROLE));
     }
 
     @Test

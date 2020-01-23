@@ -30,7 +30,7 @@ public class CustomerController {
     @ApiOperation(value = "Find customer by a given username")
     @GetMapping("/details")
     public Customer findCustomerByUsername(@RequestParam(value = "name") String name) {
-        return customerRepository.findByUsername(name).get(0);
+        return customerRepository.findByUsername(name);
     }
 
     @ApiOperation(value = "List all customers")

@@ -1,7 +1,6 @@
 package mini.auth.boot.security;
 
 import java.util.Arrays;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -27,18 +26,17 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         String username = authentication.getName();
         String password = authentication.getCredentials().toString();
 
-        List<Customer> customers = customerRepository.findByUsername(username);
-        if (customers.isEmpty()) {
+        Customer customer = customerRepository.findByUsername(username);
+        if (customer == null) {
             throw new UsernameNotFoundException("Username not found!");
         }
 
-        if (!password.equals(customers.get(0).getPassword())) {
+        if (!password.equals(customer.getPassword())) {
             throw new BadCredentialsException("Password is invalid!");
         }
 
         return new UsernamePasswordAuthenticationToken(
-            username, password, Arrays.asList(
-                new SimpleGrantedAuthority(customers.get(0).getRole())));
+            username, password, Arrays.asList(new SimpleGrantedAuthority(customer.getRole())));
     }
 
     @Override
