@@ -37,7 +37,7 @@ public class CustomerControllerCrudTest {
         controller.createNewCustomer(customer);
 
         // then:
-        Customer createdCustomer = repository.findByUsername("clark").get(0);
+        Customer createdCustomer = repository.findByUsername("clark");
         assertCustomer(createdCustomer, "clark", "superman");
     }
 
@@ -63,7 +63,7 @@ public class CustomerControllerCrudTest {
     public void shouldUpdateCustomer() {
         // given:
         saveCustomerToDb("catwoman", "the thief");
-        Customer existingCustomer = repository.findByUsername("catwoman").get(0);
+        Customer existingCustomer = repository.findByUsername("catwoman");
         assertCustomer(existingCustomer, "catwoman", "the thief");
 
         // when:
@@ -72,8 +72,8 @@ public class CustomerControllerCrudTest {
         controller.updateCustomer(existingCustomer.getId(), existingCustomer);
 
         // then:
-        assertThat(repository.findByUsername("catwoman")).isEmpty();
-        Customer updatedCustomer = repository.findByUsername("selina kyle").get(0);
+        assertThat(repository.findByUsername("catwoman")).isNull();
+        Customer updatedCustomer = repository.findByUsername("selina kyle");
         assertCustomer(updatedCustomer, "selina kyle", "waitress");
     }
 
