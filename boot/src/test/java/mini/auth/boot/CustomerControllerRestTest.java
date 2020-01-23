@@ -15,8 +15,9 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import mini.auth.boot.controller.CustomerController;
 import mini.auth.boot.entities.Customer;
-import mini.auth.boot.entities.business.CustomerRepository;
+import mini.auth.boot.entities.repository.CustomerRepository;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(CustomerController.class)

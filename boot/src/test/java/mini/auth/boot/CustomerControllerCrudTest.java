@@ -5,8 +5,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
+import mini.auth.boot.controller.CustomerController;
 import mini.auth.boot.entities.Customer;
-import mini.auth.boot.entities.business.CustomerRepository;
+import mini.auth.boot.entities.repository.CustomerRepository;
 
 @SpringBootTest
 @ActiveProfiles("test")

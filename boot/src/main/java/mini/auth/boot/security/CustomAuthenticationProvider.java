@@ -11,7 +11,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import mini.auth.boot.entities.Customer;
-import mini.auth.boot.entities.business.CustomerRepository;
+import mini.auth.boot.entities.repository.CustomerRepository;
 
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
