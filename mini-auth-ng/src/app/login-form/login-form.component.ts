@@ -18,7 +18,10 @@ export class LoginFormComponent implements OnInit {
 
   onSubmit() {
     this.loginService.login(this.customer)
-      .subscribe(data => console.log("data: " + JSON.stringify(data)));
+      .subscribe(data => {
+        localStorage.setItem("username", this.customer.username);
+        localStorage.setItem("jwt", "Bearer " + data['jwt']);
+      });
   }
 
 }
