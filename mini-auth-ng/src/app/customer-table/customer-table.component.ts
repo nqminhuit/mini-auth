@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CustomerService } from '../customer.service';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 
 export interface CustomerData {
   id: number;
@@ -19,6 +20,8 @@ const DATA: CustomerData[] = [
 })
 export class CustomerTableComponent {
 
+  @ViewChild(MatTable, { static: true }) table: MatTable<any>;
+
   constructor(private customerService: CustomerService) { }
 
   displayedColumns: string[] = ['id', 'username', 'role'];
@@ -27,6 +30,11 @@ export class CustomerTableComponent {
 
   getAllCustomers() {
     this.customerService.getAllCustomer().subscribe(data => this.dataSource = data);
+  }
+
+  addCustomer(newUsername: string, newRole: string) {
+    this.dataSource.push({ "id": 2, "username": newUsername, "role": newRole });
+    this.table.renderRows();
   }
 
 }

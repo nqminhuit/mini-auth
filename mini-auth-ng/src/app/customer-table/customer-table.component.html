@@ -1,3 +1,13 @@
+<form (ngSubmit)="addCustomer(newUsername.value, newRole.value)">
+  <div class="form-group input-sm">
+    <label for="newUsername">Username</label>
+    <input type="text" id="newUsername" class="form-control" #newUsername>
+    <label for="newRole">Role</label>
+    <input type="text" id="newRole" class="form-control" #newRole>
+    <button type="submit" class="btn btn-primary">Add</button>
+  </div>
+</form>
+
 <form (ngSubmit)="getAllCustomers()">
   <button type="submit" class="btn btn-primary">Get all customers</button>
 </form>
