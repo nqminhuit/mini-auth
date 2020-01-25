@@ -1,6 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { CustomerService } from '../customer.service';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
 
 export interface CustomerData {
   id: number;
@@ -20,11 +19,7 @@ const DATA: CustomerData[] = [
 })
 export class CustomerTableComponent {
 
-  @ViewChild(MatTable, { static: true }) table: MatTable<any>;
-
   constructor(private customerService: CustomerService) { }
-
-  displayedColumns: string[] = ['id', 'username', 'role'];
 
   dataSource = DATA;
 
@@ -32,9 +27,46 @@ export class CustomerTableComponent {
     this.customerService.getAllCustomer().subscribe(data => this.dataSource = data);
   }
 
-  addCustomer(newUsername: string, newRole: string) {
-    this.dataSource.push({ "id": 2, "username": newUsername, "role": newRole });
-    this.table.renderRows();
+  createCustomer(event): void {
+    if (window.confirm("create?")) {
+      this.customerService.createCustomer(event.newData)
+      event.confirm.resolve(event.newData);
+    }
+    else {
+      event.confirm.reject();
+    }
+  }
+
+  editCustomer(event): void {
+    if (window.confirm("edit?")) {
+      this.customerService.updateCustomer(event.data.id, event.newData);
+      event.confirm.resolve(event.newData);
+    }
+    else {
+      event.confirm.reject();
+    }
+  }
+
+  deleteCustomer(event): void {
+    if (window.confirm("del?")) {
+      this.customerService.deleteCustomer(event.data['id']);
+      event.confirm.resolve();
+    }
+    else {
+      event.confirm.reject();
+    }
+  }
+
+  tableSettings = {
+    delete: { confirmDelete: true },
+    add: { confirmCreate: true },
+    edit: { confirmSave: true },
+    actions: { position: 'right' },
+    columns: {
+      id: { title: "ID" },
+      username: { title: "Username" },
+      role: { title: "Role" }
+    }
   }
 
 }
