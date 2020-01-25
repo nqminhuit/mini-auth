@@ -29,7 +29,7 @@ export class CustomerTableComponent {
 
   createCustomer(event): void {
     if (window.confirm("create?")) {
-      this.customerService.createCustomer(event.newData)
+      this.customerService.createCustomer(event.newData).subscribe();
       event.confirm.resolve(event.newData);
     }
     else {
@@ -39,7 +39,7 @@ export class CustomerTableComponent {
 
   editCustomer(event): void {
     if (window.confirm("edit?")) {
-      this.customerService.updateCustomer(event.data.id, event.newData);
+      this.customerService.updateCustomer(event.data.id, event.newData).subscribe();
       event.confirm.resolve(event.newData);
     }
     else {
@@ -49,7 +49,7 @@ export class CustomerTableComponent {
 
   deleteCustomer(event): void {
     if (window.confirm("del?")) {
-      this.customerService.deleteCustomer(event.data['id']);
+      this.customerService.deleteCustomer(event.data['id']).subscribe();
       event.confirm.resolve();
     }
     else {
@@ -63,7 +63,7 @@ export class CustomerTableComponent {
     edit: { confirmSave: true },
     actions: { position: 'right' },
     columns: {
-      id: { title: "ID" },
+      id: { title: "ID", editable: false },
       username: { title: "Username" },
       role: { title: "Role" }
     }
