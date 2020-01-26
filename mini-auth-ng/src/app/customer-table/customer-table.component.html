@@ -2,10 +2,12 @@
   <button type="submit" class="btn btn-primary">Get all customers</button>
 </form>
 
-<ng2-smart-table [settings]="tableSettings"
-  class="table table-hover"
-  [source]="dataSource"
-  (createConfirm)="createCustomer($event)"
-  (editConfirm)="editCustomer($event)"
-  (deleteConfirm)="deleteCustomer($event)">
-</ng2-smart-table>
+<div class="table-container">
+  <ng2-smart-table [settings]="tableSettings"
+    class="table table-hover"
+    [source]="dataSource"
+    (createConfirm)="createCustomer($event)"
+    (editConfirm)="editCustomer($event)"
+    (deleteConfirm)="deleteCustomer($event)">
+  </ng2-smart-table>
+</div>
