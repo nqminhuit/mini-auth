@@ -1,9 +1,9 @@
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from '@angular/core';
 import { FormsModule } from "@angular/forms";
-import { MatTableModule } from "@angular/material/table";
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Ng2SmartTableModule } from "ng2-smart-table";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CustomerTableComponent } from './customer-table/customer-table.component';
@@ -21,7 +21,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatTableModule,
+    Ng2SmartTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

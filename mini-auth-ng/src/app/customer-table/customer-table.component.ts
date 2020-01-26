@@ -7,11 +7,6 @@ export interface CustomerData {
   role: string;
 }
 
-const DATA: CustomerData[] = [
-  { "id": 0, "username": "batman", "role": "admin" },
-  { "id": 2, "username": "catwoman", "role": "user" }
-];
-
 @Component({
   selector: 'app-customer-table',
   templateUrl: './customer-table.component.html',
@@ -21,12 +16,37 @@ export class CustomerTableComponent {
 
   constructor(private customerService: CustomerService) { }
 
-  displayedColumns: string[] = ['id', 'username', 'role'];
+  dataSource: CustomerData[];
 
-  dataSource = DATA;
+  tableSettings = {
+    delete: { confirmDelete: true },
+    add: { confirmCreate: true },
+    edit: { confirmSave: true },
+    actions: { position: 'right' },
+    columns: {
+      id: { title: "ID", editable: false },
+      username: { title: "Username" },
+      role: { title: "Role" }
+    }
+  }
 
   getAllCustomers() {
     this.customerService.getAllCustomer().subscribe(data => this.dataSource = data);
+  }
+
+  createCustomer(event): void {
+    this.customerService.createCustomer(event.newData).subscribe();
+    event.confirm.resolve(event.newData);
+  }
+
+  editCustomer(event): void {
+    this.customerService.updateCustomer(event.data.id, event.newData).subscribe();
+    event.confirm.resolve(event.newData);
+  }
+
+  deleteCustomer(event): void {
+    this.customerService.deleteCustomer(event.data['id']).subscribe();
+    event.confirm.resolve();
   }
 
 }
