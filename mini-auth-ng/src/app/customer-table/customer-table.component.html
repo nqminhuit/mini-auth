@@ -1,8 +1,8 @@
 <form (ngSubmit)="getAllCustomers()">
-  <button type="submit" class="btn btn-primary">Get all customers</button>
+  <button type="submit" class="form-group btn btn-primary">List all customers</button>
 </form>
 
-<div class="table-container">
+<div class="table-container table table-bordered">
   <ng2-smart-table [settings]="tableSettings"
     class="table table-hover"
     [source]="dataSource"

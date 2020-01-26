@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container border border-info rounded">
   <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
     <div class="form-group">
       <label for="username">Username</label>
@@ -17,8 +17,8 @@
         [(ngModel)]="customer.password" name="customerPassword">
     </div>
 
-    <button type="submit" class="btn btn-success" [disabled]="!loginForm.form.valid">
-      Submit
+    <button type="submit" class="form-group btn btn-success btn-full" [disabled]="!loginForm.form.valid">
+      Login
     </button>
 
   </form>

@@ -32,7 +32,12 @@ export class CustomerTableComponent {
   }
 
   getAllCustomers() {
-    this.customerService.getAllCustomer().subscribe(data => this.dataSource = data);
+    this.customerService.getAllCustomer().subscribe(
+      data => {
+        this.dataSource = data
+      },
+      _error => window.alert("You are not authorized to access this resource!")
+    );
   }
 
   createCustomer(event): void {
