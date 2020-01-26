@@ -18,7 +18,6 @@ export class CustomerService {
   }
 
   createCustomer(newCustomer: CustomerData): Observable<CustomerData> {
-    console.log("create customer: " + newCustomer);
     return this.http.post<CustomerData>(this.CUSTOMER_API + "/create", newCustomer,
       {
         headers: new HttpHeaders({
