@@ -1,3 +1,4 @@
 rootProject.name = 'mini-auth'
 
 include 'boot'
+include 'mini-auth-ng'
