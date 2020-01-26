@@ -23,6 +23,7 @@ export class CustomerTableComponent {
     add: { confirmCreate: true },
     edit: { confirmSave: true },
     actions: { position: 'right' },
+    pager: { display: false },
     columns: {
       id: { title: "ID", editable: false },
       username: { title: "Username" },
