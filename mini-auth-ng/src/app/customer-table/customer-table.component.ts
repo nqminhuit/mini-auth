@@ -35,33 +35,18 @@ export class CustomerTableComponent {
   }
 
   createCustomer(event): void {
-    if (window.confirm("create?")) {
-      this.customerService.createCustomer(event.newData).subscribe();
-      event.confirm.resolve(event.newData);
-    }
-    else {
-      event.confirm.reject();
-    }
+    this.customerService.createCustomer(event.newData).subscribe();
+    event.confirm.resolve(event.newData);
   }
 
   editCustomer(event): void {
-    if (window.confirm("edit?")) {
-      this.customerService.updateCustomer(event.data.id, event.newData).subscribe();
-      event.confirm.resolve(event.newData);
-    }
-    else {
-      event.confirm.reject();
-    }
+    this.customerService.updateCustomer(event.data.id, event.newData).subscribe();
+    event.confirm.resolve(event.newData);
   }
 
   deleteCustomer(event): void {
-    if (window.confirm("del?")) {
-      this.customerService.deleteCustomer(event.data['id']).subscribe();
-      event.confirm.resolve();
-    }
-    else {
-      event.confirm.reject();
-    }
+    this.customerService.deleteCustomer(event.data['id']).subscribe();
+    event.confirm.resolve();
   }
 
 }
