@@ -45,5 +45,5 @@ $ curl -X DELETE --user batman:batman http://localhost:8080/api/customer/1
 $ ./gradlew test
 ```
 ## Swagger:
-- UI: http://localhost:8080/mini-auth/swagger-ui.html
-- raw: http://localhost:8080/mini-auth/v2/api-docs
+- UI: http://localhost:8080/swagger-ui.html
+- raw: http://localhost:8080/v2/api-docs
