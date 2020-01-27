@@ -1,4 +1,4 @@
-package mini.auth.boot.security;
+package mini.auth.security.service;
 
 import org.springframework.security.core.userdetails.UserDetails;
 

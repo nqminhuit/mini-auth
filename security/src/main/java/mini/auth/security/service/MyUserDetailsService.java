@@ -1,4 +1,4 @@
-package mini.auth.boot.security;
+package mini.auth.security.service;
 
 import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;

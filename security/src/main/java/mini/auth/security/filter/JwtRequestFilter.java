@@ -1,4 +1,4 @@
-package mini.auth.boot.security.filter;
+package mini.auth.security.filter;
 
 import static org.apache.commons.lang3.StringUtils.contains;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
@@ -14,8 +14,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import mini.auth.boot.security.JwtService;
-import mini.auth.boot.security.MyUserDetailsService;
+import mini.auth.security.service.JwtService;
+import mini.auth.security.service.MyUserDetailsService;
 
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {

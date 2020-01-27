@@ -1,4 +1,4 @@
-package mini.auth.boot.security.config;
+package mini.auth.security.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import mini.auth.boot.security.filter.JwtRequestFilter;
+import mini.auth.security.filter.JwtRequestFilter;
 
 @Configuration
 @EnableWebSecurity

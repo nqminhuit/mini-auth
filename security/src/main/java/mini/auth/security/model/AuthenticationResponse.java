@@ -1,4 +1,4 @@
-package mini.auth.boot.model;
+package mini.auth.security.model;
 
 import java.io.Serializable;
 
@@ -12,6 +12,8 @@ public class AuthenticationResponse implements Serializable {
 
     private String jwt;
 
+    private String error;
+
     public AuthenticationResponse() {
     }
 
@@ -19,8 +21,17 @@ public class AuthenticationResponse implements Serializable {
         this.jwt = jwt;
     }
 
+    public AuthenticationResponse(String jwt, String error) {
+        this.jwt = null;
+        this.error = error;
+    }
+
     public String getJwt() {
         return this.jwt;
+    }
+
+    public String getError() {
+        return this.error;
     }
 
 }

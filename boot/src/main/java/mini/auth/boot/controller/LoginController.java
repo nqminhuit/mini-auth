@@ -1,15 +1,10 @@
 package mini.auth.boot.controller;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,22 +12,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import mini.auth.boot.model.AuthenticationRequest;
-import mini.auth.boot.model.AuthenticationResponse;
-import mini.auth.boot.security.CustomAuthenticationProvider;
-import mini.auth.boot.security.JwtService;
+import mini.auth.security.model.AuthenticationRequest;
+import mini.auth.security.model.AuthenticationResponse;
+import mini.auth.security.service.AuthenticationService;
 
 @Api(description = "Handles user login")
 @RestController
 @RequestMapping("/api/login")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200") // TODO remove
 public class LoginController {
 
     @Autowired
-    private CustomAuthenticationProvider authenticationProvider;
+    private AuthenticationService authenticationService;
 
-    @Autowired
-    private JwtService jwtService;
 
     @ApiOperation(value = "user provides credentials")
     @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
@@ -40,28 +32,12 @@ public class LoginController {
         String password = req.getPassword();
         String username = req.getUsername();
 
-        Authentication authentication = null;
-        try {
-            authentication = authenticationProvider.authenticate(
-                new UsernamePasswordAuthenticationToken(username, password));
-        }
-        catch (UsernameNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("username not found!");
-        }
-        catch (BadCredentialsException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("invalid password");
+        AuthenticationResponse authenticate = authenticationService.authenticate(username, password);
+        if (StringUtils.isBlank(authenticate.getError())) {
+            return ResponseEntity.ok(authenticate);
         }
 
-        if (authentication == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body("could not perform authentication for user " + username);
-        }
-
-        UserDetails userDetails = new User(username, password, authentication.getAuthorities());
-
-        String token = jwtService.generateToken(userDetails);
-
-        return ResponseEntity.ok(new AuthenticationResponse(token));
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(authenticate.getError());
     }
 
 }
