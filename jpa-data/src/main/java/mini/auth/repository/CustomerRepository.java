@@ -1,7 +1,7 @@
-package mini.auth.boot.entities.repository;
+package mini.auth.repository;
 
 import org.springframework.data.repository.CrudRepository;
-import mini.auth.boot.entities.Customer;
+import mini.auth.entity.Customer;
 
 public interface CustomerRepository extends CrudRepository<Customer, Long> {
 

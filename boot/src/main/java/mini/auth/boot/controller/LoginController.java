@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import mini.auth.boot.AuthenticationRequest;
-import mini.auth.boot.AuthenticationResponse;
+import mini.auth.boot.model.AuthenticationRequest;
+import mini.auth.boot.model.AuthenticationResponse;
 import mini.auth.boot.security.CustomAuthenticationProvider;
 import mini.auth.boot.security.JwtService;
 

@@ -8,8 +8,8 @@ repositories {
 }
 
 dependencies {
+    implementation project(':jpa-data')
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'io.jsonwebtoken:jjwt-api:0.10.7'
 
@@ -44,4 +44,4 @@ processResources {
         into 'static'
     }
 }
-processResources.dependsOn(':mini-auth-ng:npmRunBuild')
+processResources.dependsOn(':mini-auth-ng:npmRunBuild')  // this slows down the automation test

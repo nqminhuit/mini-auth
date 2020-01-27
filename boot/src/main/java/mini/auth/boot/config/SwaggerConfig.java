@@ -1,4 +1,4 @@
-package mini.auth.boot;
+package mini.auth.boot.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

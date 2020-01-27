@@ -1,4 +1,4 @@
-package mini.auth.boot.security;
+package mini.auth.boot.security.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;

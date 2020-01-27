@@ -1,4 +1,4 @@
-package mini.auth.boot.entities;
+package mini.auth.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

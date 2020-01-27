@@ -1,4 +1,4 @@
-package mini.auth.boot;
+package mini.auth.boot.model;
 
 import java.io.Serializable;
 

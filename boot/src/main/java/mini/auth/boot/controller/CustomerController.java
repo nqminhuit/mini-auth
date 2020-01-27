@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import mini.auth.boot.entities.Customer;
-import mini.auth.boot.entities.repository.CustomerRepository;
+import mini.auth.entity.Customer;
+import mini.auth.repository.CustomerRepository;
 
 @Api(description = "Supported operations for Customer entity")
 @RestController

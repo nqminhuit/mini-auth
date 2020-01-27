@@ -8,8 +8,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-import mini.auth.boot.entities.Customer;
-import mini.auth.boot.entities.repository.CustomerRepository;
+import mini.auth.entity.Customer;
+import mini.auth.repository.CustomerRepository;
 
 @Component
 public class MyUserDetailsService implements UserDetailsService {
