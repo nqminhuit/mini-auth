@@ -6,13 +6,13 @@ repositories {
 
 dependencies {
     api 'org.apache.commons:commons-lang3:3.9'
+    api 'org.apache.logging.log4j:log4j-core:2.13.0'
     implementation project(':jpa-data')
     implementation 'org.springframework.security:spring-security-core:5.1.7.RELEASE'
     implementation 'org.springframework.security:spring-security-web:5.1.7.RELEASE'
     implementation 'org.springframework.security:spring-security-config:5.1.7.RELEASE'
     implementation 'javax.servlet:javax.servlet-api:4.0.1'
     implementation 'io.jsonwebtoken:jjwt-api:0.10.7'
-    implementation 'org.apache.logging.log4j:log4j-api:2.13.0'
 
     runtime 'io.jsonwebtoken:jjwt-impl:0.10.7'
     runtime 'io.jsonwebtoken:jjwt-jackson:0.10.7'

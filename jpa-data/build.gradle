@@ -8,4 +8,6 @@ dependencies {
     api 'org.springframework.data:spring-data-jpa:2.2.3.RELEASE'
     implementation 'org.hibernate:hibernate-entitymanager:5.3.15.Final'
     implementation 'com.zaxxer:HikariCP:3.4.2'
+    implementation 'org.postgresql:postgresql:42.2.9.jre7'
+    implementation 'org.flywaydb:flyway-core:6.1.4'
 }

@@ -2,6 +2,8 @@ package mini.auth.boot.controller;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +25,7 @@ public class LoginController {
     @Autowired
     private AuthenticationService authenticationService;
 
+    private static final Logger LOG = LogManager.getLogger(LoginController.class);
 
     @ApiOperation(value = "user provides credentials")
     @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
