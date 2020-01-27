@@ -7,7 +7,7 @@ repositories {
 dependencies {
     api 'org.apache.commons:commons-lang3:3.9'
     api 'org.apache.logging.log4j:log4j-core:2.13.0'
-    implementation project(':jpa-data')
+    implementation project(':mini-auth-persistence')
     implementation 'org.springframework.security:spring-security-core:5.1.7.RELEASE'
     implementation 'org.springframework.security:spring-security-web:5.1.7.RELEASE'
     implementation 'org.springframework.security:spring-security-config:5.1.7.RELEASE'

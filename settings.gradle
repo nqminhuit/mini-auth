@@ -1,6 +1,6 @@
 rootProject.name = 'mini-auth'
 
-include 'boot'
-include 'jpa-data'
-include 'security'
+include 'mini-auth-boot'
+include 'mini-auth-persistence'
+include 'mini-auth-security'
 include 'mini-auth-ng'
