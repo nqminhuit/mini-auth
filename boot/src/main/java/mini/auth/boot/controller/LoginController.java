@@ -5,7 +5,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +18,6 @@ import mini.auth.security.service.AuthenticationService;
 @Api(description = "Handles user login")
 @RestController
 @RequestMapping("/api/login")
-@CrossOrigin(origins = "http://localhost:4200") // TODO remove
 public class LoginController {
 
     @Autowired
