@@ -41,13 +41,24 @@ export class CustomerTableComponent {
   }
 
   createCustomer(event): void {
-    this.customerService.createCustomer(event.newData).subscribe();
-    event.confirm.resolve(event.newData);
+    this.customerService.createCustomer(event.newData).subscribe(
+      data => event.confirm.resolve(data),
+      _error => {
+        if (_error.error.message.includes("org.hibernate.exception.ConstraintViolationException")) {
+          window.alert("Cannot create duplicate username!");
+        }
+      });
   }
 
   editCustomer(event): void {
-    this.customerService.updateCustomer(event.data.id, event.newData).subscribe();
-    event.confirm.resolve(event.newData);
+    this.customerService.updateCustomer(event.data.id, event.newData).subscribe(
+      data => event.confirm.resolve(data),
+      _error => {
+        if (_error.error.message.includes("org.hibernate.exception.ConstraintViolationException")) {
+          window.alert("Cannot edit to a duplicate username!");
+        }
+      }
+    );
   }
 
   deleteCustomer(event): void {
