@@ -1,0 +1,12 @@
+apply plugin: 'com.moowork.node'
+apply plugin: 'base'
+
+clean {
+    delete 'dist'
+}
+
+task npmRunBuild(type: NpmTask) {
+    dependsOn npmInstall
+    npmCommand = ['run', 'build']
+    args = ['--', '--prod']
+}

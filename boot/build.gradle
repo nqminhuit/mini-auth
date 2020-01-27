@@ -38,3 +38,10 @@ test {
         events "passed", "skipped", "failed"
     }
 }
+
+processResources {
+    from ('../mini-auth-ng/dist/mini-auth-ng') {
+        into 'static'
+    }
+}
+processResources.dependsOn(':mini-auth-ng:npmRunBuild')
