@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import mini.auth.boot.controller.CustomerController;
-import mini.auth.boot.entities.Customer;
-import mini.auth.boot.entities.repository.CustomerRepository;
+import mini.auth.entity.Customer;
+import mini.auth.repository.CustomerRepository;
 
 @SpringBootTest
 @ActiveProfiles("test")
