@@ -1,6 +1,5 @@
 apply plugin: 'com.moowork.node'
 apply plugin: 'base'
-apply plugin: 'java'
 
 clean {
     delete 'dist'
