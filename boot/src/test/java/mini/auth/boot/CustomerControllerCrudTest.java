@@ -24,48 +24,57 @@ public class CustomerControllerCrudTest {
         assertThat(controller).isNotNull();
     }
 
-    private void assertCustomer(Customer actualCustomer, String expectedUsername, String expectedRole) {
+    private void assertCustomer(Customer actualCustomer,
+        String expectedUsername, String expectedRole, String expectedPass) {
+
         assertThat(actualCustomer.getUsername()).isEqualTo(expectedUsername);
         assertThat(actualCustomer.getRole()).isEqualTo(expectedRole);
+        assertThat(actualCustomer.getPassword()).isEqualTo(expectedPass);
     }
 
     @Test
     public void shouldCreateCustomer() {
         // given:
-        Customer customer = new Customer("clark", "superman");
-        customer.setPassword("password");
+        Customer customer = createCustomer("clark", "superman", "superpassword");
         // when:
         controller.createNewCustomer(customer);
 
         // then:
         Customer createdCustomer = repository.findByUsername("clark");
-        assertCustomer(createdCustomer, "clark", "superman");
+        assertCustomer(createdCustomer, "clark", "superman", "superpassword");
     }
 
-    private void saveCustomerToDb(String username, String role) {
-        Customer customer = new Customer(username, role);
-        customer.setPassword("password");
+    private Customer createCustomer(String username, String role, String password) {
+        Customer customer = new Customer();
+        customer.setUsername(username);
+        customer.setPassword(password);
+        customer.setRole(role);
+        return customer;
+    }
+
+    private void saveCustomerToDb(String username, String role, String password) {
+        Customer customer = createCustomer(username, role, password);
         repository.save(customer);
     }
 
     @Test
     public void shouldGetCorrectCustomer() {
         // given:
-        saveCustomerToDb("batman", "the dark knight");
+        saveCustomerToDb("batman", "the dark knight", "batpass");
 
         // when:
         Customer createdCustomer = controller.findCustomerByUsername("batman");
 
         // then:
-        assertCustomer(createdCustomer, "batman", "the dark knight");
+        assertCustomer(createdCustomer, "batman", "the dark knight", "batpass");
     }
 
     @Test
     public void shouldUpdateCustomer() {
         // given:
-        saveCustomerToDb("catwoman", "the thief");
+        saveCustomerToDb("catwoman", "the thief", "nin9liv9s");
         Customer existingCustomer = repository.findByUsername("catwoman");
-        assertCustomer(existingCustomer, "catwoman", "the thief");
+        assertCustomer(existingCustomer, "catwoman", "the thief", "nin9liv9s");
 
         // when:
         existingCustomer.setUsername("selina kyle");
@@ -75,7 +84,7 @@ public class CustomerControllerCrudTest {
         // then:
         assertThat(repository.findByUsername("catwoman")).isNull();
         Customer updatedCustomer = repository.findByUsername("selina kyle");
-        assertCustomer(updatedCustomer, "selina kyle", "waitress");
+        assertCustomer(updatedCustomer, "selina kyle", "waitress", "nin9liv9s");
     }
 
 }

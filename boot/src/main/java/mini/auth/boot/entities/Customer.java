@@ -24,18 +24,7 @@ public class Customer {
     @Column(name = "password")
     private String password;
 
-    protected Customer() {
-    }
-
-    public Customer(String username, String role) {
-        this.username = username;
-        this.role = role;
-    }
-
-    public Customer(Long id, String username, String role) {
-        this.id = id;
-        this.username = username;
-        this.role = role;
+    public Customer() {
     }
 
     public Long getId() {
