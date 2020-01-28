@@ -2,7 +2,9 @@
 ## Build:
 ```
 $ cd mini-auth/
-$ ./gradlew clean assemble
+$ ./gradlew clean
+$ ./gradlew npmRunBuild
+$ ./gradlew assemble
 ```
 
 ## Deploy:

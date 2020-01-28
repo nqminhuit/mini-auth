@@ -39,4 +39,4 @@ processResources {
         into 'static'
     }
 }
-processResources.dependsOn(':mini-auth-ng:npmRunBuild')  // this slows down the automation test
+// processResources.dependsOn(':mini-auth-ng:npmRunBuild')  // this slows down the automation test
