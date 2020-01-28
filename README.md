@@ -29,3 +29,10 @@ $ java -jar mini-auth-boot/build/libs/mini-auth-boot-<app_version>.jar
 ## Swagger:
 - UI: http://localhost:8080/swagger-ui.html
 - raw: http://localhost:8080/v2/api-docs
+
+## Docker:
+Build image:
+```
+$ cd mini-auth/
+$ sudo docker-compose up --build
+```
