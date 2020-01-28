@@ -1,8 +1,13 @@
 version: '2.1'
 
 services:
+  db:
+    image: postgres:12.1-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: mini_auth
+
   mini-auth:
-    image: mini-auth
     build: .
     ports:
       - 8080:8080

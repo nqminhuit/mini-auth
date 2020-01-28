@@ -9,7 +9,12 @@ FROM openjdk:8-jdk-alpine as gradle-builder
 COPY . /usr/src/app/mini-auth
 WORKDIR /usr/src/app/mini-auth
 RUN ./gradlew assemble
-RUN readlink -f mini-auth-boot/build/libs/mini-auth-boot-0.0.1-SNAPSHOT.jar
+CMD exec java -Djava.security.egd=file:/dev/./urandom -jar mini-auth-boot/build/libs/mini-auth-boot-0.0.1-SNAPSHOT.jar
+# ENTRYPOINT exec java -Djava.security.egd=file:/dev/./urandom -jar mini-auth-boot/build/libs/mini-auth-boot-0.0.1-SNAPSHOT.jar
+
+
+
+
 
 # FROM openjdk:8-jdk-alpine
 # VOLUME /tmp
@@ -20,3 +25,5 @@ RUN readlink -f mini-auth-boot/build/libs/mini-auth-boot-0.0.1-SNAPSHOT.jar
 # ENTRYPOINT exec java $JAVA_OPTS -jar mini-auth.jar
 # # For Spring-Boot project, use the entrypoint below to reduce Tomcat startup time.
 # #ENTRYPOINT exec java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar mini-auth.jar
+
+# $ sudo docker image build -t mini-auth:1.0.0
