@@ -1,0 +1,8 @@
+version: '2.1'
+
+services:
+  mini-auth:
+    image: mini-auth
+    build: .
+    ports:
+      - 8080:8080
