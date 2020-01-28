@@ -8,4 +8,4 @@ FROM openjdk:8-jdk-alpine as gradle-builder
 COPY . /usr/src/app/mini-auth
 WORKDIR /usr/src/app/mini-auth
 RUN ./gradlew assemble
-CMD exec java -jar mini-auth-boot/build/libs/mini-auth-boot-0.0.1-SNAPSHOT.jar
+CMD exec java -jar -Dspring.datasource.url=jdbc:postgresql://database:5432/mini_auth mini-auth-boot/build/libs/mini-auth-boot-0.0.1-SNAPSHOT.jar

@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  postgresdb:
+  database:
     image: postgres:12.1-alpine
     ports:
       - "5432:5432"
@@ -15,4 +15,4 @@ services:
     ports:
       - 8080:8080
     depends_on:
-      - postgresdb
+      - database
