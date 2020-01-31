@@ -7,6 +7,14 @@ $ ./gradlew npmRunBuild
 $ ./gradlew assemble
 ```
 
+## Create database:
+Make sure a Postgres database is created under the name "mini_auth" by user "postgres" (\*)
+```
+$ sudo su - postgres
+$ create database mini_auth
+```
+(\*) user "postgres" is created as default user for using Postgres DB
+
 ## Deploy:
 ```
 $ java -jar mini-auth-boot/build/libs/mini-auth-boot-<app_version>.jar
