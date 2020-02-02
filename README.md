@@ -39,8 +39,8 @@ $ cd mini-auth/
 $ sudo docker-compose up --build
 ```
 
-## Unit test:
+## Authomation tests:
 for optimal run:
 ```
-$ gw test --parallel
+$ ./gradlew test systemTest --parallel
 ```

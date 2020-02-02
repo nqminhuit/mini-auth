@@ -1,6 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'org.unbroken-dome.test-sets'
 
 repositories {
     mavenCentral()
@@ -39,4 +40,16 @@ processResources {
         into 'static'
     }
 }
-// processResources.dependsOn(':mini-auth-ng:npmRunBuild')  // this slows down the automation test
+
+testSets {
+    systemTest
+}
+
+systemTest {
+    group 'Verification'
+    description 'Runs REST API tests.'
+
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
