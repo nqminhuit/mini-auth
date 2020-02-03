@@ -37,7 +37,7 @@ public class CustomerController {
     @GetMapping("/all")
     public List<Customer> findAllCustomers() {
         List<Customer> customers = new ArrayList<>();
-        customerRepository.findAll().forEach(customers::add);
+        customerRepository.findAllByOrderByIdAsc().forEach(customers::add);
         return customers;
     }
 
